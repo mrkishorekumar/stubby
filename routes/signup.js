@@ -1,4 +1,5 @@
 import express from "express";
+import bcrypt from 'bcrypt'
 import { PrismaClient } from "@prisma/client";
 
 const router = express.Router()
@@ -10,22 +11,25 @@ router.get('/',(req,res)=>{
 
 router.post('/', async (req,res)=>{
 
-    if (!req.body.name || !req.body.email || !req.body.password) return res.render('meassage',{meassage : "Please enter all the fields"});
+    const {name, email, password} = req.body
+
+    if (!name || !email || !password) return res.render('meassage',{meassage : "Please enter all the fields"});
 
 
     try {
-        const email = await prisma.User.findUnique({
+        const query = await prisma.User.findUnique({
             where :{
-                email : req.body.email
+                email : email
             }
-        })
+        }) 
 
-        if (email==null) {
+        if (query===null) {
+            const hashedPassword = await bcrypt.hash(password,12)
             await prisma.User.create({
                 data : {
-                    name : req.body.name,
-                    email : req.body.email,
-                    password : req.body.password,
+                    name : name,
+                    email : email,
+                    password : hashedPassword,
                     accountType : "free"
                 }
             })
@@ -33,7 +37,7 @@ router.post('/', async (req,res)=>{
             return res.render("meassage",{meassage : "Account Created!"})
         }
         else {
-            return res.render("meassage",{meassage : `${req.body.email} is already in Use!`})
+            return res.render("meassage",{meassage : `${email} is already in Use!`})
         }
     }
 

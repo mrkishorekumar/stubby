@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
+import bcrypt from 'bcrypt'
+
 
 const router = express.Router()
 const prisma = new PrismaClient() 
@@ -27,7 +29,7 @@ router.post('/',async (req,res)=>{
         }
 
         else {
-            if (query.password===password){
+            if (await bcrypt.compare(password,query.password)){
                 return res.render("meassage",{meassage : "Login!"})
             }
             else {
