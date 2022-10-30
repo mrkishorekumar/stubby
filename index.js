@@ -5,6 +5,7 @@ import signup from './routes/signup.js'
 import pricing from './routes/pricing.js'
 import contact from './routes/contact.js'
 import about from './routes/about.js'
+import dashboard from './routes/dashboard.js'
 
 const app = express()
 
@@ -18,6 +19,8 @@ app.use('/signup',signup)
 app.use('/pricing',pricing)
 app.use('/contact',contact)
 app.use('/about',about)
+app.use('/dashboard',dashboard)
+
 
 
 app.listen(process.env.PORT || 5000, ()=>{

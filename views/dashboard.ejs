@@ -1,3 +1,78 @@
 <%- include("./components/header") %>
+<section class="d-flex flex-column h-100">
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">Stubby Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pricing">Pricing</a>
+                  </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact</a>
+                </li>
+              </ul>
+              <div class="d-flex" role="search">
+                <div><a class="btn btn-light" href="/logout" role="button">Logout</a></div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      
+      <!-- Begin page content -->
+    <main class="flex-shrink-0 mb-5 ">
+        <div class="container">
+            <h4 class="mt-3">Enter you Long URL</h4>
+            <form action="/short" method="POST">
+                <div class="mb-3">
+                    <input type="text" name="name" class="form-control my-2" placeholder="Name" required />
+                    <input type="url" name="longUrl" class="form-control my-2" placeholder="URL" required />
+                    <div id="emailHelp" class="form-text my-2">We'll never share your url with anyone else.</div>
+                    <div><button type="submit" class="btn btn-dark">Short</button></div>
+                </div>
+            </form>
+            <table class="table mb-5">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Long URL</th>
+                    <th scope="col">Short URL</th>
+                    <th scope="col">Count</th>
+                    <th scope="col" class="mobileNone">Created At</th>
+                    <th scope="col" class="mobileNone">Expire by</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% shortUrls.forEach((shortUrl)=>{ %>
+                  <tr>
+                    <td><%= shortUrl.name %></td>
+                    <td><a href="<%= shortUrl.full %>" class="d-inline-block text-truncate" style="max-width: 9.375rem; margin-bottom: 0rem;" target="_blank"><%= shortUrl.full %></a></td>
+                    <td><a href="<%= shortUrl.short %>" target="_blank"><%= shortUrl.short %></a></td>
+                    <td><%= shortUrl.clicks %></td>
+                    <td class="mobileNone"><%= shortUrl.CreatedAt %></td>
+                    <td class="mobileNone"><%= shortUrl.Expireby %></td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+        </div>
+    </main>
+      
+    <footer class="footer fixed-bottom mt-5 py-3 bg-light text-center">
+        <div class="container">
+            <span class="text-muted">© Copyright <script>document.write(new Date().getFullYear())</script> Stubby</span>
+        </div>
+    </footer>
+</section>
+<link rel="stylesheet" href="style/dashborad.css">
 
 <%- include("./components/footer") %>

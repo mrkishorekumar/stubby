@@ -1,29 +1,50 @@
 <%- include("./components/header") %>
     <section class="w-100 vh-100 d-flex justify-content-center align-items-center"">
-        <form action=" /signup" method="POST">
-        <div class="my-2">
+        <form action=" /signup"  method="POST" class="needs-validation p-5" novalidate>
+        <div>
+            <a href="/"><img class="d-block mx-auto mb-2" src="images/android-chrome-512x512.png" alt="stubby" width="72"
+                height="57"></a>
+        </div>
+        <div class="mb-2 text-center">
             <h3>Signup</h3>
         </div>
         <div class="form-group">
-            <label for="Fullname">Full Name</label>
-            <input type="text" name="name" class="form-control my-2" id="Fullname"
-                aria-describedby="emailHelp" placeholder="Enter your Full Name" required>
+            <div>
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Full Name"
+                    required>
+                <div class="invalid-feedback">
+                    Please enter a valid Name for Signup.
+                </div>
+            </div>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" class="form-control my-2" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Enter email" required>
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com"
+                    required>
+                <div class="invalid-feedback">
+                    Please enter a valid email address for Signup.
+                </div>
+            </div>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                else.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control my-2" id="exampleInputPassword1"
-                placeholder="Password" required>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" pattern=".{8,}" class="form-control" id="email" placeholder="Your Password"
+                    required>
+                <div class="invalid-feedback">
+                    Please enter a valid Password for Signup.
+                </div>
+            </div>
         </div>
-        <div class="d-flex justify-content-between w-100">
+        <div class="d-flex justify-content-between w-100 mt-3">
             <div><button type="submit" class="btn btn-dark">Signup</button></div>
             <div><a class="btn btn-outline-dark" href="/login" role="button">Login</a></div>
         </div>
         </form>
     </section>
+    <script src="javascript/form-validation.js"></script>
     <%- include("./components/footer") %>
