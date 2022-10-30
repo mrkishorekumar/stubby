@@ -1,0 +1,29 @@
+<%- include("./components/header") %>
+    <section class="w-100 vh-100 d-flex justify-content-center align-items-center"">
+        <form action=" /signup" method="POST">
+        <div class="my-2">
+            <h3>Signup</h3>
+        </div>
+        <div class="form-group">
+            <label for="Fullname">Full Name</label>
+            <input type="text" name="name" class="form-control my-2" id="Fullname"
+                aria-describedby="emailHelp" placeholder="Enter your Full Name" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control my-2" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control my-2" id="exampleInputPassword1"
+                placeholder="Password" required>
+        </div>
+        <div class="d-flex justify-content-between w-100">
+            <div><button type="submit" class="btn btn-dark">Signup</button></div>
+            <div><a class="btn btn-outline-dark" href="/login" role="button">Login</a></div>
+        </div>
+        </form>
+    </section>
+    <%- include("./components/footer") %>
